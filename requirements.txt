@@ -1,0 +1,8 @@
+streamlit==1.35.0
+starlette==0.37.2
+langchain
+langchain-community
+chromadb
+sentence-transformers
+pypdf
+ollama
