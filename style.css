@@ -1,453 +1,410 @@
-/* =========================================
-   GOOGLE FONT
-========================================= */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
 
-/* =========================================
-   GLOBAL STYLES
-========================================= */
-html, body, [class*="css"] {
+/* =====================================
+   FUTURE AI THEME
+===================================== */
+
+:root {
+    --primary: #00e5ff;
+    --secondary: #7c3aed;
+    --accent: #00ff9d;
+    --bg-dark: #030712;
+    --panel: rgba(255,255,255,0.05);
+    --border: rgba(255,255,255,0.08);
+}
+
+html,
+body,
+[class*="css"] {
     font-family: 'Inter', sans-serif;
 }
 
-/* Main App Background */
+/* =====================================
+   BACKGROUND
+===================================== */
 
 .stApp {
     background:
-        radial-gradient(circle at top left, rgba(56,189,248,0.12), transparent 25%),
-        radial-gradient(circle at bottom right, rgba(14,165,233,0.12), transparent 25%),
-        linear-gradient(
-            135deg,
-            #020617 0%,
-            #0f172a 45%,
-            #111827 100%
-        );
+        radial-gradient(circle at 20% 20%, rgba(0,229,255,0.12), transparent 25%),
+        radial-gradient(circle at 80% 80%, rgba(124,58,237,0.12), transparent 25%),
+        radial-gradient(circle at center, rgba(0,255,157,0.05), transparent 30%),
+        linear-gradient(135deg, #010409 0%, #020617 40%, #0f172a 100%);
 
     color: white;
+    overflow-x: hidden;
 }
 
-/* =========================================
-   HERO SECTION
-========================================= */
+/* =====================================
+   FLOATING GRID EFFECT
+===================================== */
+
+.stApp::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    background-image:
+        linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+
+    background-size: 40px 40px;
+
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* =====================================
+   TITLE
+===================================== */
 
 .main-title {
-    text-align: center;
 
-    font-size: 5rem;
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: 6rem;
     font-weight: 800;
 
-    line-height: 1.1;
+    text-align: center;
 
     margin-top: 40px;
     margin-bottom: 20px;
 
-    background: linear-gradient(
-        90deg,
-        #38bdf8,
-        #0ea5e9,
-        #7dd3fc,
-        #38bdf8
-    );
+    letter-spacing: 4px;
 
-    background-size: 300% 300%;
+    background:
+        linear-gradient(
+            90deg,
+            #00e5ff,
+            #00ff9d,
+            #7c3aed,
+            #00e5ff
+        );
+
+    background-size: 300%;
 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
     animation:
-        gradientMove 6s ease infinite,
-        fadeIn 1s ease;
+        neonFlow 8s infinite linear;
 
-    text-shadow:
-        0 0 20px rgba(56,189,248,0.3),
-        0 0 40px rgba(56,189,248,0.15);
+    filter:
+        drop-shadow(0 0 12px rgba(0,229,255,0.5));
 }
 
-/* Subtitle */
+/* =====================================
+   SUBTITLE
+===================================== */
 
 .subtitle {
+
     text-align: center;
 
+    max-width: 950px;
+
+    margin: 0 auto 50px;
+
     font-size: 1.4rem;
-    color: #cbd5e1;
 
-    max-width: 850px;
+    color: rgba(255,255,255,0.8);
 
-    margin: 0 auto 45px;
-
-    line-height: 1.8;
-
-    animation: fadeIn 1.2s ease;
+    line-height: 1.9;
 }
 
-/* =========================================
-   UPLOAD BOX
-========================================= */
+/* =====================================
+   GLASS PANEL
+===================================== */
 
 .upload-box {
 
-    width: 82%;
+    width: 85%;
 
-    margin:
-        0 auto
-        45px auto;
+    margin: auto;
 
     padding: 40px;
 
     border-radius: 30px;
 
     background:
-        rgba(255,255,255,0.05);
+        rgba(255,255,255,0.04);
 
-    backdrop-filter: blur(18px);
+    backdrop-filter: blur(30px);
 
     border:
         1px solid rgba(255,255,255,0.08);
 
     box-shadow:
-        0 8px 32px rgba(0,0,0,0.35),
-        0 0 30px rgba(56,189,248,0.08);
+        0 0 30px rgba(0,229,255,0.08),
+        inset 0 0 20px rgba(255,255,255,0.02);
 
-    transition: 0.35s ease;
-
-    animation: fadeIn 1.4s ease;
+    transition: 0.4s;
 }
 
 .upload-box:hover {
 
     transform:
-        translateY(-6px);
+        translateY(-5px);
 
     box-shadow:
-        0 18px 50px rgba(0,0,0,0.45),
-        0 0 40px rgba(56,189,248,0.18);
+        0 0 40px rgba(0,229,255,0.18),
+        0 0 100px rgba(124,58,237,0.1);
 }
 
-/* =========================================
+/* =====================================
    FILE UPLOADER
-========================================= */
+===================================== */
 
 [data-testid="stFileUploader"] {
 
     border:
-        2px dashed rgba(56,189,248,0.4);
+        2px dashed rgba(0,229,255,0.4);
 
-    border-radius: 24px;
+    border-radius: 25px;
 
-    padding: 35px;
+    padding: 40px;
 
     background:
-        rgba(255,255,255,0.03);
+        rgba(255,255,255,0.02);
 
-    transition: 0.3s ease;
+    transition: 0.3s;
 }
 
 [data-testid="stFileUploader"]:hover {
 
     border-color:
-        rgba(56,189,248,0.8);
+        var(--primary);
 
-    background:
-        rgba(56,189,248,0.06);
+    box-shadow:
+        0 0 25px rgba(0,229,255,0.3);
 }
 
-/* Upload Text */
+/* =====================================
+   INPUT FIELD
+===================================== */
 
-[data-testid="stFileUploader"] label {
+.stTextInput input {
 
-    font-size: 1.3rem !important;
+    background:
+        rgba(255,255,255,0.04) !important;
 
-    font-weight: 700 !important;
+    border:
+        1px solid rgba(0,229,255,0.25) !important;
 
     color: white !important;
+
+    border-radius: 18px !important;
+
+    padding: 18px !important;
+
+    transition: 0.3s;
 }
 
-/* Browse Files Button */
+.stTextInput input:focus {
 
-[data-testid="baseButton-secondary"] {
-
-    background:
-        linear-gradient(
-            90deg,
-            #38bdf8,
-            #0ea5e9
-        ) !important;
-
-    color: black !important;
-
-    border: none !important;
-
-    border-radius: 14px !important;
-
-    padding:
-        10px 22px !important;
-
-    font-weight: 700 !important;
-
-    transition: 0.3s ease !important;
-}
-
-[data-testid="baseButton-secondary"]:hover {
-
-    transform:
-        scale(1.04);
+    border-color:
+        #00e5ff !important;
 
     box-shadow:
-        0 0 20px rgba(56,189,248,0.4);
+        0 0 25px rgba(0,229,255,0.35) !important;
 }
 
-/* =========================================
-   INPUT BOX
-========================================= */
+/* =====================================
+   FUTURE BUTTONS
+===================================== */
 
-.stTextInput > div > div > input {
-
-    background:
-        rgba(255,255,255,0.05);
-
-    border:
-        1px solid rgba(56,189,248,0.25);
-
-    border-radius: 18px;
-
-    padding: 16px 20px;
-
-    color: white;
-
-    font-size: 1rem;
-
-    transition: 0.3s ease;
-}
-
-.stTextInput > div > div > input:focus {
-
-    border:
-        1px solid #38bdf8;
-
-    box-shadow:
-        0 0 15px rgba(56,189,248,0.25);
-}
-
-/* =========================================
-   BUTTONS
-========================================= */
-
-.stButton > button {
+.stButton button {
 
     background:
         linear-gradient(
             135deg,
-            #38bdf8,
-            #0ea5e9
-        );
+            #00e5ff,
+            #7c3aed
+        ) !important;
 
-    color: black;
+    color: white !important;
 
-    font-weight: 700;
+    border: none !important;
 
-    border: none;
-
-    border-radius: 16px;
+    border-radius: 16px !important;
 
     padding:
-        12px 26px;
+        14px 26px !important;
 
-    transition: 0.3s ease;
+    font-weight: 700 !important;
+
+    transition: 0.3s !important;
 
     box-shadow:
-        0 0 15px rgba(56,189,248,0.2);
+        0 0 20px rgba(0,229,255,0.3);
 }
 
-.stButton > button:hover {
+.stButton button:hover {
 
     transform:
-        translateY(-2px)
-        scale(1.02);
+        translateY(-3px)
+        scale(1.03);
 
     box-shadow:
-        0 0 30px rgba(56,189,248,0.4);
+        0 0 35px rgba(0,229,255,0.5),
+        0 0 80px rgba(124,58,237,0.3);
 }
 
-/* =========================================
-   ANSWER BOX
-========================================= */
+/* =====================================
+   AI ANSWER CARD
+===================================== */
 
 .answer-box {
 
-    background:
-        rgba(255,255,255,0.05);
+    margin-top: 30px;
 
-    border:
-        1px solid rgba(255,255,255,0.08);
-
-    border-left:
-        5px solid #38bdf8;
-
-    padding: 28px;
+    padding: 30px;
 
     border-radius: 24px;
 
-    margin-top: 30px;
+    background:
+        rgba(255,255,255,0.04);
 
-    line-height: 1.8;
+    backdrop-filter: blur(20px);
 
-    font-size: 1.05rem;
-
-    color: #e2e8f0;
+    border:
+        1px solid rgba(0,229,255,0.15);
 
     box-shadow:
-        0 8px 30px rgba(0,0,0,0.2);
+        0 0 30px rgba(0,229,255,0.08);
 
-    animation:
-        fadeIn 0.5s ease;
+    color: white;
+
+    line-height: 1.9;
+
+    position: relative;
 }
 
-/* =========================================
+.answer-box::before {
+
+    content: "AI RESPONSE";
+
+    position: absolute;
+
+    top: -12px;
+    left: 20px;
+
+    background: #00e5ff;
+
+    color: black;
+
+    padding: 4px 10px;
+
+    font-size: 0.7rem;
+
+    border-radius: 8px;
+
+    font-weight: 700;
+}
+
+/* =====================================
    SIDEBAR
-========================================= */
+===================================== */
 
 section[data-testid="stSidebar"] {
 
     background:
-        rgba(15,23,42,0.95);
+        rgba(3,7,18,0.95);
 
     border-right:
-        1px solid rgba(255,255,255,0.06);
+        1px solid rgba(0,229,255,0.08);
+
+    backdrop-filter: blur(20px);
 }
 
-/* Sidebar Text */
-
-section[data-testid="stSidebar"] * {
-
-    color: white !important;
-}
-
-/* =========================================
-   SUCCESS MESSAGE
-========================================= */
-
-.stSuccess {
-
-    border-radius: 16px;
-
-    background:
-        rgba(34,197,94,0.12);
-
-    border:
-        1px solid rgba(34,197,94,0.3);
-}
-
-/* =========================================
-   SPINNER
-========================================= */
-
-.stSpinner > div {
-
-    border-top-color:
-        #38bdf8 !important;
-}
-
-/* =========================================
+/* =====================================
    SCROLLBAR
-========================================= */
+===================================== */
 
 ::-webkit-scrollbar {
-
     width: 10px;
-}
-
-::-webkit-scrollbar-track {
-
-    background:
-        #020617;
 }
 
 ::-webkit-scrollbar-thumb {
 
     background:
         linear-gradient(
-            #38bdf8,
-            #0ea5e9
+            #00e5ff,
+            #7c3aed
         );
 
     border-radius: 20px;
 }
 
-/* =========================================
+/* =====================================
    ANIMATIONS
-========================================= */
+===================================== */
 
-@keyframes fadeIn {
-
-    from {
-        opacity: 0;
-        transform:
-            translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform:
-            translateY(0);
-    }
-}
-
-@keyframes gradientMove {
+@keyframes neonFlow {
 
     0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
+        background-position: 0%;
     }
 
     100% {
-        background-position: 0% 50%;
+        background-position: 300%;
     }
 }
 
-/* =========================================
-   RESPONSIVE DESIGN
-========================================= */
+/* =====================================
+   MOBILE
+===================================== */
 
-@media (max-width: 992px) {
+@media(max-width:768px){
 
-    .main-title {
-
-        font-size: 3.7rem;
+    .main-title{
+        font-size:3rem;
+        letter-spacing:1px;
     }
 
-    .subtitle {
-
-        font-size: 1.15rem;
-
-        padding:
-            0 20px;
+    .subtitle{
+        font-size:1rem;
+        padding:0 20px;
     }
 
-    .upload-box {
-
-        width: 95%;
-
-        padding: 28px;
+    .upload-box{
+        width:95%;
+        padding:25px;
     }
 }
 
-@media (max-width: 600px) {
+.stApp::after {
+    content: "";
 
-    .main-title {
+    position: fixed;
+    top: 0;
+    left: 0;
 
-        font-size: 2.6rem;
+    width: 100%;
+    height: 3px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #00e5ff,
+        #7c3aed,
+        #00ff9d,
+        transparent
+    );
+
+    background-size: 300%;
+
+    animation: scanline 8s linear infinite;
+
+    z-index: 9999;
+}
+
+@keyframes scanline {
+    0% {
+        background-position: 0%;
     }
 
-    .subtitle {
-
-        font-size: 1rem;
-    }
-
-    .upload-box {
-
-        padding: 22px;
+    100% {
+        background-position: 300%;
     }
 }
