@@ -18,6 +18,12 @@ st.set_page_config(
 )
 
 # -----------------------------------
+# CHAT HISTORY
+# -----------------------------------
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+# -----------------------------------
 # LOAD CSS
 # -----------------------------------
 def load_css():
@@ -152,16 +158,50 @@ if uploaded_file:
     st.markdown("---")
 
     # -----------------------------------
+    # DISPLAY CHAT HISTORY
+    # -----------------------------------
+    for message in st.session_state.messages:
+
+        with st.chat_message(message["role"]):
+
+            st.markdown(message["content"])
+
+    # -----------------------------------
     # QUESTION INPUT
     # -----------------------------------
-    question = st.text_input(
-        "Ask a question about the PDF"
+    question = st.chat_input(
+    "Ask a question about the PDF..."
     )
 
     # -----------------------------------
     # GENERATE ANSWER
     # -----------------------------------
     if question:
+
+        st.session_state.messages.append(
+            {
+                "role": "user",
+                "content": question
+            }
+        )
+
+        with st.chat_message("user"):
+            st.markdown(question)
+
+        with st.chat_message("assistant"):
+
+            with st.spinner("🤖 Thinking..."):
+
+                answer = qa_chain.run(question)
+
+            st.markdown(answer)
+
+        st.session_state.messages.append(
+             {
+                "role": "assistant",
+                "content": answer
+             }
+        )
 
         with st.spinner("AI is thinking..."):
 
