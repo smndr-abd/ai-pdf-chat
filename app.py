@@ -93,6 +93,12 @@ st.sidebar.info(
     "Upload a PDF and ask questions about its content."
 )
 
+if st.sidebar.button("Clear Chat"):
+
+    st.session_state.messages = []
+
+    st.rerun()
+
 # -----------------------------------
 # FILE UPLOAD SECTION
 # -----------------------------------
