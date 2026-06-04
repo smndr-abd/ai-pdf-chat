@@ -230,6 +230,74 @@ if uploaded_file:
     os.remove(pdf_path)
 
 # -----------------------------------
+# PDF ANALYTICS DASHBOARD
+# -----------------------------------
+
+total_pages = len(documents)
+total_chunks = len(chunks)
+
+total_words = sum(
+    len(doc.page_content.split())
+    for doc in documents
+)
+
+estimated_read_time = max(1, total_words // 200)
+
+st.markdown("## 📊 Document Analytics")
+
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    st.metric(
+        label="📄 Pages",
+        value=total_pages
+    )
+
+with col2:
+    st.metric(
+        label="🧩 Chunks",
+        value=total_chunks
+    )
+
+with col3:
+    st.metric(
+        label="📝 Words",
+        value=f"{total_words:,}"
+    )
+
+with col4:
+    st.metric(
+        label="⏱ Read Time",
+        value=f"{estimated_read_time} min"
+    )
+
+st.markdown(
+    f"""
+    <div class="doc-summary">
+        <h3>📚 Uploaded Document</h3>
+
+        <p><strong>File:</strong> {uploaded_file.name}</p>
+
+        <p><strong>Pages:</strong> {total_pages}</p>
+
+        <p><strong>Words:</strong> {total_words:,}</p>
+
+        <p><strong>Estimated Reading Time:</strong> {estimated_read_time} minutes</p>
+
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+with st.expander("🔍 Processing Details"):
+
+    st.write(f"📄 Pages Loaded: {total_pages}")
+    st.write(f"🧩 Chunks Created: {total_chunks}")
+    st.write("🧠 Embeddings Generated")
+    st.write("💾 Stored in ChromaDB")
+    st.write("🤖 Connected to Ollama")
+
+# -----------------------------------
 # FOOTER
 # -----------------------------------
 st.markdown("---")
